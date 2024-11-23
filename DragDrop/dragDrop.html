@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag & Drop</title>
+    <style>
+        *{
+            background: #080808;
+            color:#fff;
+        
+
+        }
+        .container{
+            width:100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #left{
+            border: 1px dashed #fff;
+            padding: 10px;
+            width: 100px;
+            height: 150px;
+            margin:10px;
+            cursor:grab;
+        }
+        #right{
+            border: 1px dashed #fff;
+            padding: 10px;
+            width: 100px;
+            height: 150px;
+            margin:10px;
+            cursor:grab;
+
+
+        }
+        .items{
+            margin: 10px;
+            background: aqua;
+            color: #000;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+
+            <div id="left">
+                <div class="items" draggable="true">Item 1</div>
+                <div class="items" draggable="true">Item 2</div>
+                <div class="items" draggable="true">Item 3</div>
+
+
+            </div>
+            <div id="right">
+            </div>
+
+        </div>
+
+    <script>
+        var items = document.getElementsByClassName("items");
+        var left = document.getElementById("left");
+        var right = document.getElementById("right");
+
+        for(item of items ){
+
+            item.addEventListener("dragstart",function(e){
+                var selectedElement = e.target;
+                right.addEventListener("dragover",function(e){
+                e.preventDefault();
+
+            });
+            right.addEventListener("drop",function(e){
+                right.appendChild(selectedElement);
+                selectedElement = null;
+
+
+                
+
+            });
+
+            left.addEventListener("dragover",function(e){
+                e.preventDefault();
+
+            });
+            left.addEventListener("drop",function(e){
+                left.appendChild(selectedElement);
+                selectedElement = null;
+
+
+                
+
+            });
+
+
+            });
+        
+
+
+        }
+
+
+
+
+    </script>
+  
+</body>
+</html>
